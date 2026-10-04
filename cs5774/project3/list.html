@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1">
+    <title>Create a Test Case | EvaLLM</title>
+    <link rel="preconnect" href="https://font.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.7.1.min.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <!-- logged in header (it's the same on every page) -->
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="dashboard.html">
+                <!-- Logo created by Sanjana Ghanta using Canva. -->
+                <img class="site-logo" src="img/logo.png" alt="EvaLLM">
+                EvaLLM
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <ul>
+                    <li><a href="dashboard.html">Test Cases</a></li>
+                    <li><a href="list.html" aria-current="page">Test Cases</a></li>
+                    <li><a href="add.html">New Test Cases</a></li>
+                    <li><a href="index.html">Log Out</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- GET makes sure the query in the results page URL -->
+        <form class="header-search" action="search-results.html" method="get" role="search"
+            aria-label="Search Evaluations">
+            <label for="header-query">Search Evaluations</label>
+            <input id="header-query" name="q" type="search" placeholder="Try Response Quality" required>
+            <button class="button" type="submit">Search</button>
+        </form>
+    </header>
+
+    <main id="main">
+        <div class="container">
+
+            <div class="page-heading">
+                <div>
+                    <h1>Evaluation Test Cases</h1>
+                    <p>Browse and compare your team's saved AI Evaluations.</p>
+                </div>
+                <a class="button button-primary" href="add.html">+ Add Test Case</a>
+            </div>
+
+            <!-- Search and filter form -->
+            <form class="filter-bar" action="list.html" method="get" role="search" aria-label="Filter test cases">
+                <div class="filter-search">
+                    <label for="filter-keyword">Search</label>
+                    <input type="search" id="filter-keyword" name="q" placeholder="Search by Title or Keyword">
+                </div>
+                <div>
+                    <label for="filter-model">Model</label>
+                    <select id="filter-model" name="model">
+                        <option value="">All Models</option>
+                        <option>GPT-5</option>
+                        <option>Claude Sonnet 5</option>
+                        <option>Gemini 2.5 Pro</option>
+                        <option>Llama 4 Maverick</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filter-category">Category</label>
+                    <select id="filter-category" name="category">
+                        <option value="">All statuses</option>
+                        <option>Reviewed</option>
+                        <option>Needs Review</option>
+                        <option>Draft</option>
+                    </select>
+                </div>
+                <button class="button" type="submit">Apply</button>
+            </form>
+
+            <!-- Active filters are always visible | Feedback L5 -->
+            <div class="active-filters">
+                <span id="active-filters-label">Active filters:</span>
+                <ul aria-labelledby="active-filters-label">
+                    <li class="chip">Updated: last 30 days <a href="list.html" aria-label="Remove filter:
+                            updated in the last 30 days">&times;</a></li>
+                    <li class="chip">Visibility: team only <a href="list.html" aria-label="Remove filter: 
+                            team only">&times;</a></li>
+                </ul>
+                <a href="list.html">Clear All</a>
+            </div>
+
+            <p id="saved-count" role="status">0 test cases saved for review.</p>
+
+            <!-- Results table -->
+            <div class="table-wrap">
+                <table class="results-table">
+                    <caption>Showing 1&ndash;10 of 38 test cases, newest first. Select a title to open it.</caption>
+                    <thead>
+                        <tr>
+                            <!-- Sorted Headers | Feedback L2 -->
+                            <th scope="col">Test case</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Score</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Updated</th>
+                            <th scope="col">Save for review</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Prime Number Function</a>
+                                <span class="case-id meta">#042</span>
+                            </td>
+                            <td data-label="Model">GPT-5</td>
+                            <td data-label="Category">Code generation</td>
+                            <td data-label="Score"><span class="score">4 / 5</span></td>
+                            <td data-label="Status"><span class="status status-reviewed">Reviewed</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-22">Sep 22, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Summarize Research Abstract</a>
+                                <span class="case-id meta">#041</span>
+                            </td>
+                            <td data-label="Model">Claude Sonnet 5</td>
+                            <td data-label="Category">Summarization</td>
+                            <td data-label="Score"><span class="score">3 / 5</span></td>
+                            <td data-label="Status"><span class="status status-needs-review">Needs review</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-21">Sep 21, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Detect Off-by-One Bug</a>
+                                <span class="case-id meta">#040</span>
+                            </td>
+                            <td data-label="Model">GPT-5</td>
+                            <td data-label="Category">Debugging</td>
+                            <td data-label="Score"><span class="score">– / 5</span></td>
+                            <td data-label="Status"><span class="status status-draft">Draft</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-20">Sep 20, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Convert SQL Query to Pandas</a>
+                                <span class="case-id meta">#039</span>
+                            </td>
+                            <td data-label="Model">Gemini 2.5 Pro</td>
+                            <td data-label="Category">Code generation</td>
+                            <td data-label="Score"><span class="score">5 / 5</span></td>
+                            <td data-label="Status"><span class="status status-reviewed">Reviewed</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-18">Sep 18, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Cite Sources for a Climate Claim</a>
+                                <span class="case-id meta">#038</span>
+                            </td>
+                            <td data-label="Model">Llama 4 Maverick</td>
+                            <td data-label="Category">Factual accuracy</td>
+                            <td data-label="Score"><span class="score">2 / 5</span></td>
+                            <td data-label="Status"><span class="status status-reviewed">Reviewed</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-17">Sep 17, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Follow a 50-Word Limit</a>
+                                <span class="case-id meta">#037</span>
+                            </td>
+                            <td data-label="Model">Claude Sonnet 5</td>
+                            <td data-label="Category">Instruction following</td>
+                            <td data-label="Score"><span class="score">4 / 5</span></td>
+                            <td data-label="Status"><span class="status status-needs-review">Needs review</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-15">Sep 15, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Explain Big-O of Merge Sort</a>
+                                <span class="case-id meta">#036</span>
+                            </td>
+                            <td data-label="Model">GPT-5</td>
+                            <td data-label="Category">Reasoning</td>
+                            <td data-label="Score"><span class="score">5 / 5</span></td>
+                            <td data-label="Status"><span class="status status-reviewed">Reviewed</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-12">Sep 12, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Refactor Recursive Fibonacci</a>
+                                <span class="case-id meta">#035</span>
+                            </td>
+                            <td data-label="Model">Gemini 2.5 Pro</td>
+                            <td data-label="Category">Code generation</td>
+                            <td data-label="Score"><span class="score">3 / 5</span></td>
+                            <td data-label="Status"><span class="status status-reviewed">Reviewed</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-10">Sep 10, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Translate an Error Message to Spanish</a>
+                                <span class="case-id meta">#034</span>
+                            </td>
+                            <td data-label="Model">Llama 4 Maverick</td>
+                            <td data-label="Category">Instruction following</td>
+                            <td data-label="Score"><span class="score">4 / 5</span></td>
+                            <td data-label="Status"><span class="status status-reviewed">Reviewed</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-08">Sep 8, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                        <tr>
+                            <td class="case-title" data-label="Test case">
+                                <a href="detail.html">Solve a Multi-Step Word Problem</a>
+                                <span class="case-id meta">#033</span>
+                            </td>
+                            <td data-label="Model">Claude Sonnet 5</td>
+                            <td data-label="Category">Reasoning</td>
+                            <td data-label="Score"><span class="score">2 / 5</span></td>
+                            <td data-label="Status"><span class="status status-needs-review">Needs review</span></td>
+                            <td data-label="Updated"><time datetime="2026-09-05">Sep 5, 2026</time></td>
+                            <td class="row-arrow" data-label=""><button class="button save-case" type="button"
+                                    aria-pressed="false">Save for review</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pages for flipping through but taking in Feedback L1 and Feedback L3 -->
+            <nav class="pagination" aria-label="Pagination">
+                <p class="page-count meta">Page 1 of 4 &middot; 38 results</p>
+                <div class="pager-links">
+                    <span class="is-disabled" aria-disabled="true">&larr; Previous</span>
+                    <ol>
+                        <li><a href="list.html" aria-current="page" aria-label="Page 1">1</a></li>
+                        <li><a href="list.html" aria-label="Page 2">2</a></li>
+                        <li><a href="list.html" aria-label="Page 3">3</a></li>
+                        <li><a href="list.html" aria-label="Page 4">4</a></li>
+                    </ol>
+                    <a href="list.html">Next &rarr;</a>
+                </div>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 EvaLLM</p>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#accessibility">Accessibility</a></li>
+                    <li><a href="add.html#score-rubric">Help</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+</body>
+
+</html>

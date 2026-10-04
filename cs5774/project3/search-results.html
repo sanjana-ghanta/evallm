@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1">
+    <title>Search Results | EvaLLM</title>
+    <link rel="preconnect" href="https://font.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.7.1.min.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <!-- logged in header (it's the same on every page) -->
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="dashboard.html">
+                <!-- Logo created by Sanjana Ghanta using Canva. -->
+                <img class="site-logo" src="img/logo.png" alt="EvaLLM">
+                EvaLLM
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <ul>
+                    <li><a href="dashboard.html">Test Cases</a></li>
+                    <li><a href="list.html" aria-current="page">Test Cases</a></li>
+                    <li><a href="add.html">New Test Cases</a></li>
+                    <li><a href="index.html">Log Out</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- GET makes sure the query in the results page URL -->
+        <form class="header-search" action="search-results.html" method="get" role="search"
+            aria-label="Search Evaluations">
+            <label for="header-query">Search Evaluations</label>
+            <input id="header-query" name="q" type="search" placeholder="Try Response Quality" required>
+            <button class="button" type="submit">Search</button>
+        </form>
+    </header>
+
+    <main id="main">
+        <div class="container">
+
+            <div class="page-heading">
+                <div>
+                    <h1>Search Results</h1>
+                    <p id="search-summary">Loading your simulated results.</p>
+                </div>
+            </div>
+
+            <section id="search-results" aria-label="Search Results" aria-live="polite"></section>
+            <p><a href="list.html">Back to all Test Cases</a></p>
+        </div>
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 EvaLLM</p>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#accessibility">Accessibility</a></li>
+                    <li><a href="add.html#score-rubric">Help</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+</body>
+
+</html>

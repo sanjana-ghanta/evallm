@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1">
+    <title>Prime Number Function (#042) | EvaLLM</title>
+    <link rel="preconnect" href="https://font.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.7.1.min.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <!-- logged in header (it's the same on every page) -->
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="dashboard.html">
+                <!-- Logo created by Sanjana Ghanta using Canva. -->
+                <img class="site-logo" src="img/logo.png" alt="EvaLLM">
+                EvaLLM
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="list.html" aria-current="page">Test Cases</a></li>
+                    <li><a href="add.html">New Test Cases</a></li>
+                    <li><a href="index.html">Log Out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="container">
+
+            <p class="meta"><a href="list.html">&larr; All test cases</a></p>
+
+            <div class="detail-layout">
+                <div>
+                    <p class="eyebrow">Test case #042 &middot; Code Generation &middot; GPT-5</p>
+                    <h1>Prime Number Function</h1>
+                    <!-- Created and Evaluated dates added | Feedback I5 -->
+                    <p>
+                        Evaluated by Sanjana Ghanta on
+                        <time datetime="2026-09-22">September 22, 2026</time>
+                        &middot; Created <time datetime="2026-09-19">September 19, 2026</time>
+                    </p>
+                </div>
+
+                <!-- Edit, Status Change, and Delete Controls | Feedback I1 -->
+                <div class="case-actions status-control">
+                    <span class="status status-reviewed current-status">Reviewed</span>
+                    <p class="hint">Status updates immediately for this session.</p>
+                    <form action="detail.html" method="get">
+                        <div>
+                            <label for="status-change">Status</label>
+                            <select id="status-change" name="status">
+                                <option selected>Reviewed</option>
+                                <option>Needs Review</option>
+                                <option>Draft</option>
+                            </select>
+                        </div>
+                    </form>
+                    <a class="button" href="add.html">Edit</a>
+                    <a class="button button-danger" href="list.html">Delete</a>
+                </div>
+            </div>
+
+            <div class="detail-layout">
+                <!-- Left Columm: Test Case Content -->
+                <div class="detail-main">
+                    <section class="panel" aria-labelledby="prompt-title">
+                        <h2 id="prompt-title">AI-Generated Response</h2>
+                        <pre class="response-block" tabindex="0"><code>
+def is_prime(n):
+    """
+    Return True if n is a prime number, otherwise False.
+
+    Checks divisibility by every integer from 2 up to the square root of n,
+    which keeps the loop short for large n.
+    """
+
+    for i in range(2, int(n ** 0.5) + 1):
+    if n % i == 0:
+        return False
+    return True
+                                    
+    # Example usage
+    print(is_prime(2))      # True
+    print(is_prime(15))     # False
+    print(is_prime(97))     # True</code>
+                            </pre>
+                    </section>
+
+                    <section class="panel" aria-labelledby="notes-title">
+                        <h2 id="notes-title">Evaluator Notes</h2>
+                        <!-- Used AI to generate the Evaluator Notes -->
+                        <p>
+                            The square-root bound is correct and the function is fast, and the
+                            docstring clearly explains the approach. However, the model never
+                            handles small inputs: <code>is_prime(1)</code>, <code>is_prime(0)</code>,
+                            and <code>is_prime(-7)</code> all return <code>True</code> because the
+                            loop body never runs.
+                        </p>
+                        <p>
+                            A single guard such as <code>if n &lt; 2: return False</code> fixes
+                            it. This is the third GPT-5 case this month where an edge case below
+                            the normal input range was skipped.
+                        </p>
+                    </section>
+                </div>
+
+                <!-- Right Column: Evaluation Summary and Discussion -->
+                <aside class="detail-side" aria-label="Evaluation and Comments">
+                    <section class="panel panel-tinted" aria-labelledby="evaluation-title">
+                        <h2 id="evaluation-title">Evaluation</h2>
+                        <dl class="eval-list">
+                            <div>
+                                <dt>Accuracy Score</dt>
+                                <dd><span class="score">4 / 5</span></dd>
+                            </div>
+                            <div>
+                                <dt>Status</dt>
+                                <dd><span id="evaluation-status" class="status status-reviewed">Reviewed</span></dd>
+                            </div>
+                            <div>
+                                <dt>Error Category</dt>
+                                <dd>Missed Edge Case</dd>
+                            </div>
+                            <!-- Feedback I3 -->
+                            <div>
+                                <dt>Visibility</dt>
+                                <dd>Team Only (LLM Lab)</dd>
+                            </div>
+                            <div>
+                                <dt>Last Updated</dt>
+                                <dd><time datetime="2026-09-22">Sep 22, 2026</time></dd>
+                            </div>
+                        </dl>
+                    </section>
+
+                    <section class="panel" aria-labelledby="comments-title">
+                        <h2 id="comments-title">Commends (2)</h2>
+                        <!-- Each comment uses identical markup -->
+                        <ol class="comment-list">
+                            <li class="comment">
+                                <span class="comment-author">User 1</span>
+                                <time class="meta" datetime="2026-09-22">Sep 22</time>
+                                <p>Agree on 4/5. Could we add a test for n = 2as well? It's a good edge case to test.
+                                </p>
+                            </li>
+                            <li class="comment">
+                                <span class="comment-author">User 2</span>
+                                <time class="meta" datetime="2026-09-23">Sep 23</time>
+                                <p>Claude Sonnet 5 handled this prompt correctly in #031.</p>
+                            </li>
+                        </ol>
+
+                        <form class="comment-form" action="detail.html" method="get">
+                            <label for="new-comment">Add a comment</label>
+                            <textarea id="new-comment" name="comment" rows="4"
+                                placeholder="Share feedback with your team"></textarea>
+                            <button class="button button-primary" type="submit">Post Comment</button>
+                        </form>
+                    </section>
+                </aside>
+            </div>
+
+            <!-- Previous / next test case navigation | Feedback I2 -->
+            <nav class="case-pager" aria-label="Neighboring test cases">
+                <a class="prev" href="detail.html">
+                    &larr; Previous
+                    <span class="meta">#041 Summarize Research Abstract</span>
+                </a>
+                <span class="next is-disabled" aria-disabled="true">
+                    Next &rarr;
+                    <span class="meta">This is the newest test case</span>
+                </span>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 EvaLLM</p>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#accessibility">Accessibility</a></li>
+                    <li><a href="add.html#score-rubric">Help</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+</body>
+
+</html>

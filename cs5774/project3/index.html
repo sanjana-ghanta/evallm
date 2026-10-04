@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1">
+    <title>Home | EvaLLM</title>
+    <link rel="preconnect" href="https://font.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.7.1.min.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <!-- logged in header (it's the same on every page) -->
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="dashboard.html">
+                <!-- Logo created by Sanjana Ghanta using Canva. -->
+                <img class="site-logo" src="img/logo.png" alt="EvaLLM">
+                EvaLLM
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <ul>
+                    <li><a href="index.html" aria-current="page">Home</a></li>
+                    <li><a href="list.html">Test Cases</a></li>
+                    <li><a href="dashboard.html">Log In</a></li>
+                    <li><a class="nav-cta" href="dashboard.html">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="container">
+
+            <!-- Hero Section -->
+            <section class="hero" aria-labelledby="hero-title">
+                <div>
+                    <p class="eyebrow">LLM Evaluation Workspace</p>
+                    <h1 id="hero-title">Evaluate AI Responses without the stress.</h1>
+                    <p class="lead">
+                        Save prompts, review model answers, record errors, and
+                        collaborate with your research team, all in one singular shared
+                        workspace.
+                    </p>
+                    <!-- Get Started renamed so it's more intuitive | Feedback H3 -->
+                    <div class="hero-actions">
+                        <a class="button button-primary button-large" href="add.html">Create Your First Test Case</a>
+                        <a class="button button-large" href="list.html">Browse Test Cases</a>
+                    </div>
+                </div>
+
+                <!-- Illustration created by Sanjana Ghanta using Canva. -->
+                <img class="hero-image" src="img/marketing_ex.png"
+                    alt="Example AI evaluation with a score of 4 out of 5 and Reviewed status">
+            </section>
+
+            <!-- How it works -->
+            <section class="home-section" aria-labelledby="how-title">
+                <h2 id="how-title">How it works</h2>
+                <ol class="steps">
+                    <li class="panel">
+                        <h3>Add a Respone</h3>
+                        <p>Record the exact prompt and AI output you want to review.</p>
+                    </li>
+                    <li class="panel">
+                        <h3>Evaluate It</h3>
+                        <p>Score accuracy from 1 to 5 and tag the kind of error you found.</p>
+                    </li>
+                    <li class="panel">
+                        <h3>Track Patterns</h3>
+                        <p>Comapre test cases across models to spot mistakes that keep repeating.</p>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- About & Accessibility content -->
+            <div class="home-section about-grid">
+                <section id="about" class="panel" aria-labelledby="about-title">
+                    <h2 id="about-title">About EvaLLM</h2>
+                    <!-- This section generated with Generative AI -->
+                    <p>
+                        Large language models can produce answers that sound convincing but
+                        contain wrong facts, faulty code, or ignored instructions. EvaLLM gives
+                        graduate research labs and course project teams one place to save
+                        those prompts and responses, score them against the behavior they
+                        expected, and discuss the results.
+                    </p>
+                    <p>
+                        Project owners manage test cases, while collaborators can read
+                        evaluations and leave comments. Over time, the team can search its
+                        history to see whether a model keeps making the same kind of error.
+                    </p>
+                </section>
+                <section id="accessibility" class="panel" aria-labelledby="a11y-title">
+                    <h2 id="a11y-title">Accessibility</h2>
+                    <p>
+                        EvaLLM is built with semantic HTML landmarks, a logical heading order,
+                        labeled form fields, and visible keyboard focus. Every page can be
+                        used with a keyboard alone, starting from the "Skip to main content" link.
+                    </p>
+                    <p>
+                        Found a barrier? Tell us through the Help link in the footer and we will fix it.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 EvaLLM</p>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#accessibility">Accessibility</a></li>
+                    <li><a href="add.html#score-rubric">Help</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+</body>
+
+</html>

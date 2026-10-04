@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1">
+    <title>Create a Test Case | EvaLLM</title>
+    <link rel="preconnect" href="https://font.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.7.1.min.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <!-- logged in header (it's the same on every page) -->
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="dashboard.html">
+                <!-- Logo created by Sanjana Ghanta using Canva. -->
+                <img class="site-logo" src="img/logo.png" alt="EvaLLM">
+                EvaLLM
+            </a>
+            <nav class="primary-nav" aria-label="Primary">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="list.html">Test Cases</a></li>
+                    <li><a href="add.html" aria-current="page">New Test Cases</a></li>
+                    <li><a href="index.html">Log Out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="container">
+
+            <div class="page-heading">
+                <div>
+                    <h1>Create a Test Case</h1>
+                    <p>Record a prompt, the model's response, and your evaluation.</p>
+                </div>
+            </div>
+
+            <!-- Required fields are marked with an asterisk | Feedback taken from A1
+                     Browser validation with the CSS and if anything is incorrect it'll be red
+                     and will have a specific message for invalid fields | Feedback A5
+                -->
+            <p class="hint">Fields marked with <span class="required" aria-hidden="true">*</span>
+                are required.</p>
+
+            <form class="case-form" action="detail.html" method="get">
+
+                <!-- Group 1: Identifying details -->
+                <fieldset>
+                    <legend>Test Case Details</legend>
+                    <div class="form-grid">
+                        <div class="field span-6">
+                            <label for="case-title">Test Case Title *</label>
+                            <input type="text" id="case-title" name="title" required
+                                placeholder="Example: Prime Number Function" aria-describedby="case-title-error">
+                            <p class="field-error" id="case-title-error">
+                                Enter a title for this test case.
+                            </p>
+                        </div>
+
+                        <div class="field span-6">
+                            <label for="case-model">AI Model *</label>
+                            <select id="case-model" name="model" required aria-describedby="case-model-error">
+                                <option value="">Select a model</option>
+                                <option>GPT-5</option>
+                                <option>Claude</option>
+                                <option>Gemini</option>
+                                <option>Other</option>
+                            </select>
+                            <p class="field-error" id="case-model-error">
+                                Choose the model that produced the response.
+                            </p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Group 2: Prompt and response are the biggest fields | Feedback A4 -->
+                <fieldset>
+                    <legend>Prompt and Response</legend>
+
+                    <div class="form-grid">
+                        <div class="field span-6">
+                            <label for="case-prompt">Prompt *</label>
+                            <textarea id="case-prompt" name="prompt" class="textarea-large" required
+                                placeholder="Paste the original prompt" aria-describedby="case-prompt-error"></textarea>
+                            <p class="field-error" id="case-prompt-error">
+                                Enter the original prompt.
+                            </p>
+                        </div>
+
+                        <div class="field span-6">
+                            <label for="case-response">AI-Generated Response *</label>
+                            <textarea id="case-response" name="response" class="textarea-large" required
+                                placeholder="Paste the model's full response"
+                                aria-describedby="case-response-error"></textarea>
+                            <p class="field-error" id="case-response-error">
+                                Paste the model's response so it can be evaluated.
+                            </p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Group 3: Evaluation itself -->
+                <fieldset>
+                    <legend>Evaluation</legend>
+                    <div class="form-grid">
+                        <div class="field span-12">
+                            <label for="case-expected">Expected Behavior</label>
+                            <textarea id="case-expected" name="expected" rows="3"
+                                placeholder="Describe what a correct response should do"></textarea>
+                        </div>
+
+                        <div class="field span-4">
+                            <label for="case-category">Category<span class="required"
+                                    aria-hidden="true">*</span></label>
+                            <select id="case-category" name="category" required aria-describedby="case-category-error">
+                                <option value="">Select a category</option>
+                                <option>Code Generation</option>
+                                <option>Debugging</option>
+                                <option>Summarization</option>
+                                <option>Factual Accuracy</option>
+                                <option>Instruction Following</option>
+                                <option>Reasoning</option>
+                            </select>
+                            <p class="field-error" id="case-category-error">Choose a
+                                category to group similar tests.
+                            </p>
+                        </div>
+
+                        <div class="field span-4">
+                            <label for="case-score">Accuracy Score<span class="required"
+                                    aria-hidden="true">*</span></label>
+                            <select id="case-score" name="score" required aria-describedby="case-score-error">
+                                <option value="">Select 1&ndash;5</option>
+                                <option value="5">5: Fully Correct</option>
+                                <option value="4">4: Minor Issue</option>
+                                <option value="3">3: Partly Correct</option>
+                                <option value="2">2: Mostly Wrong</option>
+                                <option value="1">1: Unusable</option>
+                            </select>
+                            <p class="field-error" id="case-score-error">
+                                Pick a score, or use Save Draft to finish later.
+                            </p>
+                            <!-- Score rubric, expandable | Feedback A3 -->
+                            <details class="rubric" id="score-rubric">
+                                <summary>How should I score?</summary>
+                                <ol reversed>
+                                    <li><strong>Fully correct:</strong> meets every part of the expected behavior.</li>
+                                    <li><strong>Partly correct:</strong> right idea, but a noticeable error changes the
+                                        result.</li>
+                                    <li><strong>Mostly wrong:</strong> major errors or ignores key instructions.</li>
+                                    <li><strong>Unusable:</strong> off-topic, fabricated, or does not run.</li>
+                                </ol>
+                            </details>
+                        </div>
+
+                        <div class="field span-4">
+                            <label for="case-visibility">Visibility</label>
+                            <select id="case-visibility" name="visibility" aria-describedby="case-visibility-hint">
+                                <option selected>Team Only</option>
+                                <option>Only Me</option>
+                                <option>Anyone with the Link</option>
+                            </select>
+                            <p class="hint" id="case-visibility-hint">Shown on the test case
+                                page after it's created.
+                            </p>
+                        </div>
+
+                        <div class="field span-12">
+                            <label for="case-notes">Evaluation Notes</label>
+                            <textarea id="case-notes" name="notes" rows="4"
+                                placeholder="Describe strenghts, errors, or missing requirements.">
+                                </textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Cancel is seperated from tje save buttons | Feedback from A2 
+                            Save Draft skips validation so that the unfinished work can be saved -->
+
+                <div class="form-actions">
+                    <a class="button button-link" href="list.html">Cancel and discard.</a>
+                    <div class="save-actions">
+                        <button class="button" type="submit" formaction="dashboard.html" formnovalidate>Save
+                            Draft</button>
+                        <button class="button button-primary" type="submit">Create Test Case</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 EvaLLM</p>
+            <nav aria-label="Footer">
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#accessibility">Accessibility</a></li>
+                    <li><a href="add.html#score-rubric">Help</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+</body>
+
+</html>
